@@ -3,7 +3,6 @@ package br.com.wti.algamoney.api.resource;
 import br.com.wti.algamoney.api.event.RecursoCriadoEvent;
 import br.com.wti.algamoney.api.model.Categoria;
 import br.com.wti.algamoney.api.repository.CategoriaRepository;
-import java.net.URI;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 /**
  * @author Washington Antunes for wTI on 19/07/2023
