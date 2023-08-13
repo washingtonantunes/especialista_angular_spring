@@ -1,14 +1,20 @@
 package br.com.wti.algamoney.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * @author Washington Antunes for wTI on 19/07/2023
@@ -29,6 +35,11 @@ public class Pessoa {
 
   @NotNull
   private Boolean ativo;
+
+  @JsonIgnoreProperties("pessoa")
+  @Valid
+  @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Contato> contatos;
 
   public Long getCodigo() {
     return codigo;
@@ -62,8 +73,15 @@ public class Pessoa {
     this.ativo = ativo;
   }
 
+  public List<Contato> getContatos() {
+    return contatos;
+  }
+
+  public void setContatos(List<Contato> contatos) {
+    this.contatos = contatos;
+  }
+
   @JsonIgnore
-  @Transient
   public boolean isInativo() {
     return !this.ativo;
   }
